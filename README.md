@@ -1,10 +1,10 @@
 
 
-#支持作者:
+# 支持作者:
 
-![image](https://github.com/Gentlesprite/nz_mibao/blob/main/doc/pay.png)
+![image](https://github.com/Gentlesprite/nz_mibao/blob/main/doc/扫码支持作者.png)
 
-#教程:
+# 教程:
 
 1.解压压缩包。
 
