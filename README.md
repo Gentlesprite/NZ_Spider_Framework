@@ -2,7 +2,7 @@
 
 #支持作者:
 
-![image](https://github.com/Gentlesprite/nz_mibao/blob/main/res/pay.png)
+![image](https://github.com/Gentlesprite/nz_mibao/blob/main/doc/pay.png)
 
 #教程:
 
