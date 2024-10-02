@@ -12,15 +12,10 @@ import datetime
 import requests
 from loguru import logger
 import threading
-from config import cookies
+
 
 MAX_THREADS: int = 5  # 并发请求次数,最好不要大于5,小心被封ip
 logger.add('get_history.log', rotation='5 MB', encoding='utf-8', enqueue=True, retention='10 days')
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 QIHU 360SE',
-    'cookie': cookies,
-    'referer': 'https://nz.qq.com/'}
-
 
 def gift_info():
     return {'sServiceType': 'nz',
@@ -37,7 +32,6 @@ def gift_info():
 
 def get_suipian():
     url = 'https://comm.ams.game.qq.com/ams/ame/amesvr?sServiceType=nz&iActivityId=664008&sServiceDepartment=group_a&sSDID=f3afc8c2a11102e84aea4e1d2cdc1b97'
-
     post_data = {'sServiceType': 'nz',
                  'iActivityId': '664008',
                  'sServiceDepartment': 'group_a',
@@ -170,6 +164,10 @@ def get_cookie():
 
 if __name__ == "__main__":
     cookies = get_cookie()
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 QIHU 360SE',
+        'cookie': cookies,
+        'referer': 'https://nz.qq.com/'}
     if cookies:
         iFlowId, sMiloTag = get_label()
         logger.info(f'当前领取的最大并发数:{MAX_THREADS}')
