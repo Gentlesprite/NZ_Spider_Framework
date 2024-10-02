@@ -1,5 +1,8 @@
 # ignore folders
 .idea/
 __pycache__/
+*.log
+*.txt
+output/
 
 

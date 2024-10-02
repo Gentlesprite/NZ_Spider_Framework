@@ -3,15 +3,18 @@
 # Software:PyCharm
 # Time:2024/10/2 13:06
 # File:main
+import os
 import json
+import os.path
 import time
 import sched
 import datetime
 import requests
 from loguru import logger
 import threading
-from config import *
+from config import cookies
 
+MAX_THREADS: int = 5  # 并发请求次数,最好不要大于5,小心被封ip
 logger.add('get_history.log', rotation='5 MB', encoding='utf-8', enqueue=True, retention='10 days')
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 QIHU 360SE',
@@ -47,7 +50,7 @@ def get_suipian():
                  'eas_refer': 'https://nz.qq.com/web202403/activity-list.shtml'}
     res = requests.post(url=url, data=post_data, headers=headers)
     res.encoding = res.apparent_encoding
-    logger.debug(json.loads(res.text))
+    logger.info(json.loads(res.text))
     return json.loads(res.text)
 
 
@@ -126,8 +129,10 @@ def get_label():
     return iFlowId, sMiloTag
 
 
-def run(max_threads=10):
+def run(max_threads=MAX_THREADS,first=False):
     threads = []
+    if first:
+        max_threads = 1
     for i in range(max_threads):
         thread = threading.Thread(target=get_suipian)
         threads.append(thread)
@@ -139,6 +144,36 @@ def run(max_threads=10):
     task()
 
 
+def get_cookie():
+    cookie_file = 'cookie.txt'
+    error_notice = '请先填写cookie.txt后重新运行程序!'
+    # 确保文件存在，如果不存在则创建并提示用户
+    if not os.path.exists(cookie_file):
+        with open(cookie_file, 'w', encoding='utf-8') as f:
+            f.write('')
+        logger.warning(error_notice)
+        return None
+
+    # 读取 cookie 内容
+    with open(cookie_file, 'r', encoding='utf-8') as f:
+        cookie_content = f.read().strip()
+
+    if cookie_content:
+        if cookie_content.startswith("'"):
+            cookie_content = cookie_content[1:]  # 去掉开头的'
+        if cookie_content.endswith("'"):
+            cookie_content = cookie_content[:-1]  # 去掉结尾的'
+        return cookie_content
+    else:
+        logger.warning(error_notice)
+        return None
+
 if __name__ == "__main__":
-    iFlowId, sMiloTag = get_label()
-    run(max_threads=5)  # 最好不要大于5,小心被封ip
+    cookies = get_cookie()
+    if cookies:
+        iFlowId, sMiloTag = get_label()
+        logger.info(f'当前领取的最大并发数:{MAX_THREADS}')
+        run(max_threads=MAX_THREADS,first=True)
+    else:
+        os.system('pause')
+        exit(0)
