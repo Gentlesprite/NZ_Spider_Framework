@@ -2,7 +2,7 @@
 # Author:Gentlesprite
 # Software:PyCharm
 # Time:2024/10/2 13:06
-# File:3
+# File:main
 import json
 import time
 import sched
