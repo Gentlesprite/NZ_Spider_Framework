@@ -13,8 +13,8 @@ import requests
 from loguru import logger
 import threading
 
-
-MAX_THREADS: int = 5  # 并发请求次数,最好不要大于5,小心被封ip
+VERSION = '0.3'
+MAX_THREADS: int = 10  # 并发请求次数
 logger.add('get_history.log', rotation='5 MB', encoding='utf-8', enqueue=True, retention='10 days')
 
 def gift_info():
@@ -59,30 +59,7 @@ def to_hour_minute(seconds):
 def task():
     # 定义每天执行的时间点（小时:分钟）
     schedule_times = [
-        '00:00',
-        '01:00',
-        '02:00',
-        '03:00',
-        '04:00',
-        '05:00',
-        '06:00',
-        '07:00',
-        '08:00',
-        '09:00',
-        '10:00',
-        '11:00',
-        '12:00',
-        '13:00',
-        '14:00',
-        '15:00',
-        '16:00',
-        '17:00',
-        '18:00',
-        '19:00',
-        '20:00',
-        '21:00',
-        '22:00',
-        '23:00'
+        '00:00'
     ]
     today = datetime.datetime.now().date()  # 获取当前的日期
     remain_do_time = []  # 获取所有距离下次任务的剩余时间的列表
@@ -170,7 +147,7 @@ if __name__ == "__main__":
         'referer': 'https://nz.qq.com/'}
     if cookies:
         iFlowId, sMiloTag = get_label()
-        logger.info(f'当前领取的最大并发数:{MAX_THREADS}')
+        logger.info(f'脚本版本:{VERSION},当前领取的最大并发数:{MAX_THREADS}。')
         run(max_threads=MAX_THREADS,first=True)
     else:
         os.system('pause')

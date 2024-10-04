@@ -9,14 +9,14 @@
 # Time:2024/8/18 17:51
 # File:build
 import os
-
+from main import VERSION
 
 app_name = 'mibao'
 ico_path = 'doc/icon.ico'
 output = 'output'
 main = r'main.py'
 
-file_version = '0.2'
+file_version = VERSION
 author = 'Gentlesprite'
 copy_right = f'Copyright (C) 2024 {author}.'
 
