@@ -12,8 +12,8 @@ iFlowId = '1106851'
 sMiloTag = 'AMS-nz-0225175223-IXlkTs-700831-1106851'
 e_code = '546570'
 g_code = '0'
-eas_url = 'https%3A%2F%2Fnz.qq.com%2Fcp%2Fa20250211kxjzj%2F%3Fe_code%3D546570'
-eas_refer = 'https%3A%2F%2Fnz.qq.com%2Fweb202403%2Factivity-list.shtml'
+eas_url = 'https://nz.qq.com/cp/a20250211kxjzj/?e_code=546570'
+eas_refer = 'https://nz.qq.com/web202403/activity-list.shtml'
 sSDID = '4b2d0f92c26fdd71eeb0cee4be54b813'
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 QIHU 360SE',
