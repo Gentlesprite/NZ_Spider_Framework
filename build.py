@@ -18,13 +18,13 @@ main = r'main.py'
 
 file_version = NZSpiderFramework.VERSION
 author = 'Gentlesprite'
-copy_right = f'Copyright (C) 2024 {author}.'
+copy_right = f'Copyright (C) 2024-2025 {author}.'
 
-build_command = f'nuitka --standalone --show-memory --show-progress --onefile '
+build_command = f'nuitka --standalone --onefile '
 build_command += f'--output-dir={output} --file-version={file_version} '
-build_command += f'--windows-icon-from-ico="{ico_path}" '
-build_command += f'--output-filename="{app_name}.exe" --copyright="{copy_right}" --mingw64 '
-build_command += main
+build_command += f'--windows-icon-from-ico="{ico_path}" --assume-yes-for-downloads '
+build_command += f'--output-filename="{app_name}_{file_version}.exe" --copyright="{copy_right}" --mingw64 '
+build_command += f'--script-name=main'
 print(build_command)
 # todo 获取当前版本并确认后才开始打包,以免系统环境变量非当前程序环境
 os.system(build_command)
