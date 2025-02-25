@@ -15,7 +15,7 @@ from config import *
 
 
 class NZSpiderFramework:
-    VERSION = '0.4'
+    VERSION = '0.5'
 
     def __init__(self,
                  iActivityId: str,

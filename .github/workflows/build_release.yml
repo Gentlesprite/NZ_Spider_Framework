@@ -46,6 +46,7 @@ jobs:
         cp "doc\使用必读.pdf" "release\使用必读.pdf"
         cd release
         "..\bin\rar" a "NSF_${{ env.CLEAN_VERSION }}.rar" "NSF_${{ env.CLEAN_VERSION }}.exe" "使用必读.pdf"
+        rm "使用必读.pdf"
 
     - name: Upload release asset to GitHub
       uses: softprops/action-gh-release@v2
