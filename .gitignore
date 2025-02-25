@@ -5,3 +5,5 @@ output/
 # ignore files
 *.log
 *.txt
+# include files
+!requirements.txt
