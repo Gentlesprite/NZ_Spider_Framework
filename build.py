@@ -14,7 +14,7 @@ from main import NZSpiderFramework
 app_name = 'NSF'
 ico_path = 'doc/icon.ico'
 output = 'output'
-main = r'main.py'
+main = 'main.py'
 
 file_version = NZSpiderFramework.VERSION
 author = 'Gentlesprite'

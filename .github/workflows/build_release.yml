@@ -14,10 +14,10 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Set up Python 3.11.7
+    - name: Set up Python 3.11.9
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11.7'
+        python-version: '3.11.9'
 
     - name: Install dependencies
       run: |
@@ -42,10 +42,10 @@ jobs:
       shell: bash
       run: |
         mkdir -p "release"
-        cp "output\NFS_${{ env.CLEAN_VERSION }}.exe" "release\NFS_${{ env.CLEAN_VERSION }}.exe"
+        cp "output\NSF_${{ env.CLEAN_VERSION }}.exe" "release\NSF_${{ env.CLEAN_VERSION }}.exe"
         cp "doc\使用必读.pdf" "release\使用必读.pdf"
         cd release
-        "..\bin\rar" a "NFS_${{ env.CLEAN_VERSION }}.rar" "NFS_${{ env.CLEAN_VERSION }}.exe" "使用必读.pdf"
+        "..\bin\rar" a "NSF_${{ env.CLEAN_VERSION }}.rar" "NSF_${{ env.CLEAN_VERSION }}.exe" "使用必读.pdf"
 
     - name: Upload release asset to GitHub
       uses: softprops/action-gh-release@v2
