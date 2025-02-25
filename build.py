@@ -24,7 +24,7 @@ build_command = f'nuitka --standalone --onefile '
 build_command += f'--output-dir={output} --file-version={file_version} '
 build_command += f'--windows-icon-from-ico="{ico_path}" --assume-yes-for-downloads '
 build_command += f'--output-filename="{app_name}_{file_version}.exe" --copyright="{copy_right}" --mingw64 '
-build_command += f'--script-name=main'
+build_command += f'--script-name={main}'
 print(build_command)
 # todo 获取当前版本并确认后才开始打包,以免系统环境变量非当前程序环境
 os.system(build_command)
