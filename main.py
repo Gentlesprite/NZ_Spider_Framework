@@ -3,7 +3,7 @@
 # Software:PyCharm
 # Time:2024/10/2 13:06
 # File:main.py
-from module import logger, __version__
+from module import logger
 from module.config import *
 from module.spider import NZSpiderFramework
 

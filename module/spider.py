@@ -115,7 +115,7 @@ class NZSpiderFramework:
             logger.warning(error_notice)
             return None
 
-        # 读取 cookie 内容
+        # 读取 cookie 内容。
         with open(cookie_file, 'r', encoding='UTF-8') as f:
             cookie = f.read().strip()
 
