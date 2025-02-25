@@ -3,6 +3,8 @@
 # Software:PyCharm
 # Time:2024/10/2 13:06
 # File:main.py
+import sys
+
 from module import logger
 from module.config import *
 from module.spider import NZSpiderFramework
@@ -27,7 +29,7 @@ if __name__ == '__main__':
             logger.info(f'当前领取的最大并发数:{MAX_THREADS}。')
             nsf.run(max_threads=MAX_THREADS, first=True)
         else:
-            exit(0)
+            sys.exit(0)
     except KeyboardInterrupt:
         logger.info('键盘中断。')
     finally:
