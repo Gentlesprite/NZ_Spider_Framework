@@ -18,7 +18,7 @@ main = 'main.py'
 build_command = f'nuitka --standalone --onefile '
 build_command += f'--output-dir={output} --file-version={__version__} --product-version={__version__} '
 build_command += f'--windows-icon-from-ico="{ico_path}" --assume-yes-for-downloads '
-build_command += f'--output-filename="{APP_NAME}_{__version__}.exe" --copyright="{__copyright__}" --mingw64 '
+build_command += f'--output-filename="{APP_NAME}_{__version__}.exe" --copyright="{__copyright__}" --msvc=latest '
 build_command += f'--remove-output '
 build_command += f'--script-name={main}'
 if __name__ == '__main__':
