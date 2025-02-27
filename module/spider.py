@@ -7,6 +7,7 @@ import os
 import json
 import time
 import sched
+import random
 import datetime
 import requests
 import threading
@@ -91,15 +92,18 @@ class NZSpiderFramework:
                 self.to_hour_minute(next_do_time)))
         scheduler.run()
 
-    def run(self, max_threads: int = 10, first=False):
+    def run(self, max_threads: int = 10, first: bool = False, delay: float = 0):
         threads = []
+        if not delay:
+            delay: float = random.uniform(0.1, 0.7)
         if first:
-            max_threads = 1
+            max_threads = max_threads
         for i in range(max_threads):
             thread = threading.Thread(target=self.get_gift)
             threads.append(thread)
         for thread in threads:
             thread.start()
+            time.sleep(delay)
         # 等待所有线程结束
         for thread in threads:
             thread.join()

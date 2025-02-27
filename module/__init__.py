@@ -7,7 +7,7 @@ from loguru import logger
 
 AUTHOR: str = 'Gentlesprite'
 APP_NAME: str = 'NSF'
-__version__: str = '0.6'
+__version__: str = '0.7'
 __copyright__: str = f'Copyright (C) 2024-2025 {AUTHOR}.'
 logger.add('history.log', rotation='5 MB', encoding='UTF-8', enqueue=True, retention='10 days')
 logger.info(f'{__copyright__} Version:{__version__}')
