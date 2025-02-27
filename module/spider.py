@@ -97,7 +97,7 @@ class NZSpiderFramework:
         if not delay:
             delay: float = random.uniform(0.1, 0.7)
         if first:
-            max_threads = max_threads
+            max_threads = 1
         for i in range(max_threads):
             thread = threading.Thread(target=self.get_gift)
             threads.append(thread)
