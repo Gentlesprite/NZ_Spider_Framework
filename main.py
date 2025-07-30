@@ -26,6 +26,7 @@ if __name__ == '__main__':
         cookies: str = nsf.cookies
         if cookies:
             nsf.headers['cookie'] = cookies
+            nsf.MAX_THREADS = MAX_THREADS
             logger.info(f'当前领取的最大并发数:{MAX_THREADS}。')
             nsf.run(max_threads=MAX_THREADS, first=True)
         else:

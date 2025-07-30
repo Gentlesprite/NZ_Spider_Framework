@@ -16,6 +16,7 @@ from module import logger
 
 
 class NZSpiderFramework:
+    MAX_THREADS: int = 1
 
     def __init__(self,
                  iActivityId: str,
@@ -54,7 +55,11 @@ class NZSpiderFramework:
                 'e_code': self.e_code,
                 'g_code': self.g_code,
                 'eas_url': self.eas_url,
-                'eas_refer': self.eas_refer}
+                'eas_refer': self.eas_refer,
+                # qb活动表单,
+                'num': '20',  # 领取qb的数量
+                'type': '1'
+                }
         url = f'https://comm.ams.game.qq.com/ams/ame/amesvr?sServiceType=nz&iActivityId={self.iActivityId}&sServiceDepartment={self.sServiceDepartment}&sSDID={self.s_SDID}'
         res = requests.post(url=url, data=data, headers=self.headers)
         res.encoding = res.apparent_encoding
@@ -86,7 +91,7 @@ class NZSpiderFramework:
             remain_do_time.append(delay)
             # 向调度器中添加任务
         next_do_time = min(remain_do_time)
-        scheduler.enter(next_do_time, 1, self.run)
+        scheduler.enter(next_do_time, 1, self.run, argument=(self.MAX_THREADS,))
         logger.info(
             f"开始执行任务,当前时间:{datetime.datetime.now()} 距离下次执行任务还有%d:%02d:%02d" % (
                 self.to_hour_minute(next_do_time)))

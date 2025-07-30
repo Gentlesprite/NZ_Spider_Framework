@@ -5,5 +5,7 @@ output/
 # ignore files
 *.log
 *.txt
+*.exe
+test*.py
 # include files
 !requirements.txt
