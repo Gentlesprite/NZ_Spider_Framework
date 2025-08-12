@@ -5,7 +5,7 @@
 # File:config.py
 # 全新周年庆超强Q币掉落活动活动配置文件,活动地址如下(已经配置好请求数据,直接在cookie.txt填入cookie内容即可使用):
 # https://nz.qq.com/cp/a20250623act/
-MAX_THREADS: int = 3  # 并发请求数。
+MAX_THREADS: int = 5  # 并发请求数。
 iActivityId: str = '751315'
 sServiceDepartment: str = 'group_a'
 iFlowId: str = '1144653'

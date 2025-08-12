@@ -15,6 +15,21 @@ import threading
 from module import logger
 
 
+def get_qb_num() -> str:
+    while True:
+        try:
+            qb_num = input('输入领取的QB数量(1-100):')
+            if qb_num.isdigit():
+                if int(qb_num) in range(1, 101):
+                    logger.info(f'当前领取的qb数量:{qb_num}。')
+                    return qb_num
+                logger.warning('输入错误,输入数量需要在1-100的范围内。')
+            else:
+                logger.warning('输入错误,输入的必须为1-100的纯数字。')
+        except Exception as e:
+            logger.error(f'输入错误,原因"{e}"')
+
+
 class NZSpiderFramework:
     MAX_THREADS: int = 1
 
@@ -43,6 +58,7 @@ class NZSpiderFramework:
         self.s_SDID: str = s_SDID
         self.headers: dict = headers
         self.schedule_times: list = schedule_times
+        self.qb_num: str = '1'
         self.get_cookie()
 
     def get_gift(self):
@@ -57,7 +73,7 @@ class NZSpiderFramework:
                 'eas_url': self.eas_url,
                 'eas_refer': self.eas_refer,
                 # qb活动表单,
-                'num': '20',  # 领取qb的数量
+                'num': self.qb_num,  # 领取qb的数量
                 'type': '1'
                 }
         url = f'https://comm.ams.game.qq.com/ams/ame/amesvr?sServiceType=nz&iActivityId={self.iActivityId}&sServiceDepartment={self.sServiceDepartment}&sSDID={self.s_SDID}'
@@ -134,6 +150,7 @@ class NZSpiderFramework:
             if cookie.endswith("'"):
                 cookie = cookie[:-1]  # 去掉结尾的'
             self.cookies = cookie
+            self.qb_num = get_qb_num()
         else:
             logger.warning(error_notice)
             return None
